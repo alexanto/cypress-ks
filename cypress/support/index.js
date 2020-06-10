@@ -18,3 +18,26 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+let polyfill;
+// grab fetch polyfill from remote URL, could be also from a local package
+before(() => {
+    const polyfillUrl = 'https://unpkg.com/unfetch/dist/unfetch.umd.js';
+
+    cy.request(polyfillUrl)
+        .then((response) => {
+            polyfill = response.body
+        })
+});
+
+beforeEach(function() {
+    // We use cy.visit({onBeforeLoad: ...}) to delete native fetch and load polyfill code instead
+    cy.visit('/', {
+        onBeforeLoad (win) {
+            delete win.fetch
+            // since the application code does not ship with a polyfill
+            // load a polyfilled "fetch" from the test
+            win.eval(polyfill);
+            win.fetch = win.unfetch;
+        },
+    });
+});

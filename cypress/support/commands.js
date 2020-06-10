@@ -12,7 +12,16 @@
 // -- This is a parent command --
 // Cypress.Commands.add("login", (email, password) => { ... })
 //
-//
+Cypress.Commands.add('stubCats', (animals) => {
+    cy.server();
+    cy.route({
+        method: 'GET',
+        url: 'https://cat-fact.herokuapp.com/facts/random',
+        response: {
+            text: `${animals} are cooler than cats`
+        }
+    }).as('apiCheck');
+});
 // -- This is a child command --
 // Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
 //

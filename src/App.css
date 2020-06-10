@@ -36,3 +36,50 @@
     transform: rotate(360deg);
   }
 }
+
+.MuiContainer-root {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.button1 {
+  margin-bottom: 20px !important;
+}
+
+.MuiTypography-body2 {
+  display: none;
+}
+
+.MuiTypography-body2.visible,
+.MuiTypography-body2.success {
+  display: block;
+}
+
+.hidden-element-container {
+  position: relative;
+}
+
+.hidden-element-container .nasty-div {
+  position: absolute;
+  width: 200px;
+  height: 48px;
+  background: #000000;
+  color: #fff;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  padding: 12px;
+  line-height: 48px;
+  border-radius: 4px;
+}
+
+.MuiCircularProgress-root.MuiCircularProgress-colorPrimary {
+  display: none;
+  margin: auto;
+}
+
+.MuiCircularProgress-root.visible-loading {
+  display: block;
+}
